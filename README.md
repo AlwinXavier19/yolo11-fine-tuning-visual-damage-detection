@@ -5,7 +5,7 @@
 ### 🤖 End-to-End Computer Vision & Machine Learning Engineering Project
 
 <p align="center">
-  <img src="images/architecture.png" alt="YOLO11 Fine-Tuning Architecture" width="100%">
+  <img src="Project-Architecture.png" alt="YOLO11 Fine-Tuning Architecture" width="100%">
 </p>
 
 <p align="center">
