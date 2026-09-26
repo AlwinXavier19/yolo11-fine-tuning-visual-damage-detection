@@ -1,6 +1,6 @@
-# 🧠 YOLO11 FINE-TUNING FOR VISUAL DAMAGE DETECTION
+# 🧠 YOLO11 Fine-Tuning for Visual Damage Detection
 
-## 🚀 Pretrained Model → Fine-Tuning → Evaluation → ONNX → FastAPI → Docker → Cloud
+### 🚀 Pretrained Model → Fine-Tuning → Evaluation → ONNX → FastAPI → Docker → Kubernetes → GPU Inference
 
 ### 🤖 End-to-End Computer Vision & Machine Learning Engineering Project
 
@@ -17,17 +17,24 @@
 ![ONNX](https://img.shields.io/badge/ONNX-Inference-orange)
 ![FastAPI](https://img.shields.io/badge/FastAPI-REST%20API-teal?logo=fastapi)
 ![Docker](https://img.shields.io/badge/Docker-Containerization-blue?logo=docker)
-![Cloud](https://img.shields.io/badge/Cloud-Deployment-4285F4)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestration-326CE5?logo=kubernetes)
+![CUDA](https://img.shields.io/badge/CUDA-GPU%20Acceleration-76B900?logo=nvidia)
+![MLOps](https://img.shields.io/badge/MLOps-Model%20Lifecycle-8A2BE2)
 
 </p>
 
 ---
 
-## 📖 About This Project
+# 📖 About This Project
 
-This project demonstrates the process of taking a **pretrained YOLO11 object detection model and fine-tuning it for a specialized visual damage detection task**.
+This project demonstrates the complete engineering lifecycle of taking a
+**pretrained YOLO11 object detection model** and fine-tuning it for a
+specialized visual damage detection problem.
 
-The project covers the complete machine learning lifecycle:
+The project focuses primarily on **transfer learning and fine-tuning** rather
+than training a computer vision model from random initialization.
+
+The complete workflow covers:
 
 ```text
 Pretrained YOLO11
@@ -40,7 +47,7 @@ Human Annotation
         ↓
 YOLO Dataset Preparation
         ↓
-Train / Validation / Test Split
+Leakage-Safe Dataset Split
         ↓
 Transfer Learning
         ↓
@@ -58,9 +65,11 @@ FastAPI Model Serving
         ↓
 Docker
         ↓
-Cloud Deployment
+Kubernetes
         ↓
-Production Inference
+GPU-Accelerated Inference
+        ↓
+Production ML Serving
 ```
 
 The main objective is to demonstrate practical experience with:
@@ -70,19 +79,24 @@ The main objective is to demonstrate practical experience with:
 - Computer Vision
 - YOLO Object Detection
 - Deep Learning
+- Dataset Engineering
 - Model Evaluation
+- Model Optimization
 - ONNX
 - ONNX Runtime
 - FastAPI
 - Docker
-- Cloud Deployment
+- Kubernetes
+- GPU Inference
 - MLOps
 
 ---
 
 # 🎯 Project Objective
 
-The goal is to take a **pretrained YOLO11 model**, adapt it to a specialized computer vision problem through fine-tuning, evaluate the resulting model, and build a complete inference system around it.
+The objective is to take a pretrained YOLO11 model, adapt it to a
+domain-specific visual detection problem through fine-tuning, evaluate its
+performance, and build a complete inference system around the resulting model.
 
 The model produces:
 
@@ -98,6 +112,7 @@ Example:
 
 ```json
 {
+  "image_id": "sample_001",
   "detections": [
     {
       "damage_type": "screen_crack",
@@ -108,37 +123,42 @@ Example:
 }
 ```
 
-The machine learning model focuses on **visual perception and object detection**.
+The machine learning model focuses on **visual perception and object
+detection**.
 
-Application-specific business decisions remain outside the model.
+Application-specific business decisions such as pricing, repair-cost
+calculation, and workflow decisions remain outside the computer-vision model.
 
 ---
 
 # 🧠 Core Skill — Fine-Tuning
 
-The primary skill demonstrated by this project is **fine-tuning a pretrained object detection model**.
+The primary engineering skill demonstrated by this project is:
+
+> **Fine-tuning a pretrained object detection model for a specialized domain.**
 
 The model is not trained from random initialization.
 
 Instead:
 
 ```text
-             PRETRAINED YOLO11
-                     │
-                     ▼
-              Learned Weights
-                     │
-                     ▼
-            Domain-Specific Data
-                     │
-                     ▼
-                 Fine-Tuning
-                     │
-                     ▼
-          Specialized YOLO11 Model
+                 PRETRAINED YOLO11
+                        │
+                        ▼
+                 Learned Weights
+                        │
+                        ▼
+              Domain-Specific Dataset
+                        │
+                        ▼
+                   Fine-Tuning
+                        │
+                        ▼
+             Specialized YOLO11 Model
 ```
 
-Fine-tuning adapts the pretrained model to a specialized visual detection problem.
+Fine-tuning adapts the pretrained model's learned parameters to a specialized
+visual detection task.
 
 ---
 
@@ -160,7 +180,7 @@ Fine-tuning adapts the pretrained model to a specialized visual detection proble
                     Train / Validation / Test
                               │
                               ▼
-                        YOLO11 Fine-Tuning
+                       YOLO11 Fine-Tuning
                               │
                               ▼
                          Model Evaluation
@@ -169,22 +189,25 @@ Fine-tuning adapts the pretrained model to a specialized visual detection proble
                          Trained Weights
                               │
                               ▼
-                          ONNX Export
+                           ONNX Export
                               │
                               ▼
-                       ONNX Runtime
+                         ONNX Runtime
                               │
                               ▼
-                           FastAPI
+                            FastAPI
                               │
                               ▼
-                       REST Inference API
+                        REST Inference API
                               │
                               ▼
                             Docker
                               │
                               ▼
-                       Cloud Deployment
+                          Kubernetes
+                              │
+                              ▼
+                       GPU Inference
 ```
 
 ---
@@ -217,13 +240,15 @@ Fine-Tuning
 Specialized Detection Model
 ```
 
-Fine-tuning allows an existing pretrained model to be adapted to a specialized domain without rebuilding the entire model from random initialization.
+Fine-tuning allows an existing pretrained model to be adapted to a specialized
+domain without rebuilding the entire model from random initialization.
 
 ---
 
 # 🧠 Transfer Learning
 
-Transfer learning means using knowledge learned by a model from a previous training task as a starting point for a new task.
+Transfer learning means using knowledge learned by a model from a previous
+training task as a starting point for a new task.
 
 In this project:
 
@@ -239,7 +264,8 @@ Target
 Specialized Visual Damage Detection
 ```
 
-The pretrained model provides an initial set of learned parameters which are adapted during fine-tuning.
+The pretrained model provides an initial set of learned parameters that are
+adapted during fine-tuning.
 
 ---
 
@@ -251,7 +277,7 @@ A classification model answers:
 Does this image contain damage?
 ```
 
-A practical visual inspection system requires more information:
+A visual inspection system requires more information:
 
 ```text
 What type of damage?
@@ -270,7 +296,8 @@ Bounding Box
 Confidence
 ```
 
-This makes YOLO suitable for applications where both **classification and localization** are required.
+This makes YOLO suitable for applications where both **classification and
+localization** are required.
 
 ---
 
@@ -278,55 +305,57 @@ This makes YOLO suitable for applications where both **classification and locali
 
 ```text
                          DATA LAYER
-                              │
-                              ▼
+                             │
+                             ▼
                          Raw Images
-                              │
-                              ▼
-                       Data Curation
-                              │
-                              ▼
-                           CVAT
-                     Human Annotation
-                              │
-                              ▼
-                       YOLO Dataset
-                              │
-                              ▼
-                  Train / Validation / Test
-                              │
-                              ▼
-                       YOLO11 Fine-Tuning
-                              │
-                              ▼
+                             │
+                             ▼
+                        Data Curation
+                             │
+                             ▼
+                        CVAT Annotation
+                             │
+                             ▼
+                         YOLO Dataset
+                             │
+                             ▼
+                    Train / Validation / Test
+                             │
+                             ▼
+                      YOLO11 Fine-Tuning
+                             │
+                             ▼
                        Model Evaluation
-                              │
-                              ▼
+                             │
+                             ▼
                             best.pt
-                              │
-                              ▼
+                             │
+                             ▼
                          ONNX Export
-                              │
-                              ▼
+                             │
+                             ▼
                            best.onnx
-                              │
-                              ▼
+                             │
+                             ▼
                         ONNX Runtime
-                              │
-                              ▼
+                             │
+                             ▼
                            FastAPI
-                              │
-                              ▼
+                             │
+                             ▼
                        REST Inference API
-                              │
-                              ▼
-                            Docker
-                              │
-                              ▼
-                      Cloud Infrastructure
-                              │
-                              ▼
-                       Production Inference
+                             │
+                             ▼
+                           Docker
+                             │
+                             ▼
+                         Kubernetes
+                             │
+                             ▼
+                       GPU Inference
+                             │
+                             ▼
+                     Production Inference
 ```
 
 ---
@@ -335,7 +364,7 @@ This makes YOLO suitable for applications where both **classification and locali
 
 Model quality starts with dataset quality.
 
-The dataset pipeline follows:
+The dataset engineering pipeline follows:
 
 ```text
 Raw Images
@@ -357,7 +386,8 @@ Dataset Splitting
 Training
 ```
 
-The dataset is treated as a versioned machine learning artifact rather than simply a collection of images.
+The dataset is treated as a **versioned machine-learning artifact** rather than
+simply a collection of images.
 
 ---
 
@@ -365,7 +395,8 @@ The dataset is treated as a versioned machine learning artifact rather than simp
 
 CVAT is used for visual annotation.
 
-The annotation process provides the ground truth required for supervised object detection training.
+The annotation process provides the ground truth required for supervised
+object detection training.
 
 ```text
 Image
@@ -381,7 +412,8 @@ Class Assignment
 Ground Truth
 ```
 
-Human-reviewed annotations are used as the reference for model training and evaluation.
+Human-reviewed annotations are used as the reference for model training and
+evaluation.
 
 ---
 
@@ -409,9 +441,12 @@ Coordinates are normalized relative to the image dimensions.
 
 # 🔐 Data Leakage Prevention
 
-Data leakage can make model evaluation appear better than the model's actual ability to generalize.
+Data leakage can make model evaluation appear better than the model's actual
+ability to generalize.
 
-When multiple images represent the same physical object or related sample, they should not be distributed independently across training and testing datasets.
+When multiple images represent the same physical object or related sample,
+they should not be distributed independently across training, validation, and
+test datasets.
 
 ### ❌ Incorrect
 
@@ -447,7 +482,7 @@ Test
 Final Evaluation
 ```
 
-The test set should remain isolated from model training and repeated tuning.
+The test set should remain isolated from training and repeated model tuning.
 
 ---
 
@@ -490,7 +525,7 @@ Important concepts involved include:
 - Learning Rate
 - Epoch
 - Batch
-- Iteration
+- Training Step
 - AdamW
 - Mixed Precision
 - GPU Acceleration
@@ -501,27 +536,28 @@ Important concepts involved include:
 
 The model is trained using GPU acceleration.
 
-The training environment uses:
+The training environment follows:
 
 ```text
 NVIDIA GPU
-     ↓
+    ↓
 CUDA
-     ↓
+    ↓
 PyTorch
-     ↓
+    ↓
 Ultralytics YOLO
-     ↓
+    ↓
 YOLO11 Fine-Tuning
 ```
 
-GPU acceleration enables the model to perform deep learning tensor operations efficiently.
+GPU acceleration allows deep-learning tensor operations to execute efficiently
+on NVIDIA hardware.
 
 ---
 
 # 📈 Model Evaluation
 
-The model is evaluated using standard object detection metrics:
+The model is evaluated using standard object-detection metrics:
 
 - Precision
 - Recall
@@ -530,7 +566,7 @@ The model is evaluated using standard object detection metrics:
 - mAP50
 - mAP50-95
 
-### Precision
+## Precision
 
 Measures how many predicted detections are correct.
 
@@ -541,7 +577,7 @@ True Positives
 True Positives + False Positives
 ```
 
-### Recall
+## Recall
 
 Measures how many actual objects are successfully detected.
 
@@ -552,9 +588,10 @@ True Positives
 True Positives + False Negatives
 ```
 
-### IoU
+## IoU
 
-Intersection over Union measures overlap between the predicted bounding box and the ground-truth bounding box.
+Intersection over Union measures overlap between the predicted bounding box
+and the ground-truth bounding box.
 
 ```text
 IoU =
@@ -563,11 +600,11 @@ Intersection Area
 Union Area
 ```
 
-### mAP50
+## mAP50
 
-Mean Average Precision at IoU threshold 0.50.
+Mean Average Precision at an IoU threshold of 0.50.
 
-### mAP50-95
+## mAP50-95
 
 Average Precision averaged across IoU thresholds from 0.50 to 0.95.
 
@@ -575,7 +612,8 @@ Average Precision averaged across IoU thresholds from 0.50 to 0.95.
 
 # 📉 Overfitting & Generalization
 
-A model can perform well on training data while performing poorly on unseen data.
+A model can perform well on training data while performing poorly on unseen
+data.
 
 This is called **overfitting**.
 
@@ -601,7 +639,8 @@ Training Performance
 Real-World Performance
 ```
 
-Proper validation, testing, dataset diversity, and visual inspection are required before treating a model as production-ready.
+Proper validation, testing, dataset diversity, and visual prediction inspection
+are required before treating a model as production-ready.
 
 ---
 
@@ -627,7 +666,7 @@ Trained Model
 Prediction
 ```
 
-Inference normally does not update the model weights.
+Inference normally does not update model weights.
 
 ---
 
@@ -646,7 +685,9 @@ Example:
 
 Confidence thresholds can be used to filter predictions.
 
-Production thresholds should be selected using validation data and the consequences of false positives and false negatives rather than choosing an arbitrary value.
+Production thresholds should be selected using validation data and the
+consequences of false positives and false negatives rather than choosing an
+arbitrary value.
 
 ---
 
@@ -669,11 +710,15 @@ ONNX Export
 best.onnx
 ```
 
+Model artifacts should be versioned and associated with the dataset and
+training configuration used to produce them.
+
 ---
 
 # ⚡ ONNX
 
-ONNX provides a standardized representation of a trained machine learning model.
+ONNX provides a standardized representation of a trained machine-learning
+model.
 
 The deployment flow is:
 
@@ -696,12 +741,12 @@ This creates a separation between:
 ```text
 Training Environment
         │
-        │
         ▼
 Inference Environment
 ```
 
-The model can therefore be deployed using an inference runtime without requiring the complete training workflow.
+The inference environment does not need to reproduce the complete model
+training workflow.
 
 ---
 
@@ -729,10 +774,11 @@ Post Processing
 JSON Response
 ```
 
-Example:
+Example response:
 
 ```json
 {
+  "model_version": "yolo11-damage-v1",
   "detections": [
     {
       "damage_type": "screen_crack",
@@ -747,9 +793,11 @@ Example:
 
 # 📚 OpenAPI & Swagger
 
-FastAPI automatically provides an OpenAPI specification for the inference service.
+FastAPI automatically provides an OpenAPI specification for the inference
+service.
 
-This provides interactive API documentation and makes the model-serving service easier to integrate with other applications.
+This provides interactive API documentation and makes the model-serving
+service easier to integrate with other applications.
 
 ```text
 FastAPI
@@ -765,49 +813,235 @@ API Testing
 
 # 🐳 Docker
 
-The inference service can be packaged together with its runtime dependencies:
+The inference service is packaged together with its runtime dependencies:
 
 ```text
 FastAPI
-+
+   +
 ONNX Runtime
-+
+   +
 Model
-+
+   +
 Python Dependencies
         ↓
-Docker Image
+   Docker Image
 ```
 
-Docker provides a reproducible runtime environment for deployment.
+Docker provides a reproducible runtime environment for model serving.
+
+The same containerized inference service can then be deployed across supported
+infrastructure environments.
 
 ---
 
-# ☁️ Cloud Deployment Architecture
+# 🚀 Production Deployment & MLOps
 
-The production deployment architecture follows:
+The fine-tuned YOLO11 model is deployed as a **decoupled inference
+microservice**, separating computer-vision inference from application and
+business logic.
+
+The model is exported from PyTorch to **ONNX**, served through
+**FastAPI + ONNX Runtime**, containerized with **Docker**, and deployed as a
+GPU-enabled workload on **Kubernetes**.
+
+## Production Architecture
 
 ```text
-GitHub
-   ↓
-CI/CD
-   ↓
-Docker Build
-   ↓
-Container Registry
-   ↓
-Cloud Compute
-   ↓
-FastAPI
-   ↓
-ONNX Runtime
-   ↓
-Fine-Tuned YOLO11
-   ↓
-Inference API
+                    PRODUCTION ML ARCHITECTURE
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                         APPLICATION LAYER                            │
+│                                                                     │
+│              Application / AI Agent / Workflow                     │
+│                              │                                      │
+│                              │ Image + Request                      │
+│                              ▼                                      │
+│                       ┌───────────────┐                             │
+│                       │   FastAPI     │                             │
+│                       │ Inference API │                             │
+│                       └───────┬───────┘                             │
+│                               │                                     │
+│                               ▼                                     │
+│                    ┌─────────────────────┐                          │
+│                    │   Kubernetes GPU    │                          │
+│                    │       Workload      │                          │
+│                    │                     │                          │
+│                    │  ┌───────────────┐  │                          │
+│                    │  │ ONNX Runtime  │  │                          │
+│                    │  │               │  │                          │
+│                    │  │ Fine-Tuned    │  │                          │
+│                    │  │ YOLO11 Model  │  │                          │
+│                    │  └───────┬───────┘  │                          │
+│                    │          │           │                          │
+│                    │      NVIDIA GPU      │                          │
+│                    └──────────┬───────────┘                          │
+│                               │                                     │
+│                               ▼                                     │
+│                     Detection JSON Result                           │
+│                               │                                     │
+│                               ▼                                     │
+│                   Application / Decision Layer                       │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
-This separates model development from production inference infrastructure.
+## Model Deployment Lifecycle
+
+```text
+Annotated Dataset
+        │
+        ▼
+YOLO11 Fine-Tuning
+        │
+        ▼
+Model Evaluation
+        │
+        ▼
+     best.pt
+        │
+        ▼
+   ONNX Export
+        │
+        ▼
+    best.onnx
+        │
+        ▼
+Docker Image
+        │
+        ▼
+Container Registry
+        │
+        ▼
+Kubernetes Deployment
+        │
+        ▼
+GPU-enabled Workload
+        │
+        ▼
+FastAPI + ONNX Runtime
+        │
+        ▼
+Production Inference
+```
+
+## Production Serving Design
+
+The inference service is intentionally separated from the core application.
+
+```text
+Application
+     │
+     │ REST API
+     ▼
+FastAPI Inference Service
+     │
+     ▼
+ONNX Runtime
+     │
+     ▼
+YOLO11
+     │
+     ▼
+Damage Detection
+```
+
+This separation provides:
+
+- Independent model deployment
+- Independent model versioning
+- Reproducible inference environments
+- GPU-accelerated inference
+- Horizontal scaling capability
+- Clear separation between AI inference and business logic
+- Ability to update the model independently from the core application
+
+## Kubernetes GPU Architecture
+
+The inference workload requests GPU resources from Kubernetes and is scheduled
+onto a compatible NVIDIA GPU node.
+
+Example resource declaration:
+
+```yaml
+resources:
+  limits:
+    nvidia.com/gpu: 1
+```
+
+This allows the Kubernetes scheduler to place the inference workload on a
+GPU-capable node.
+
+## Health & Reliability
+
+The serving layer uses health checks to determine whether the service is
+available to receive traffic.
+
+```text
+                Kubernetes
+                    │
+          ┌─────────┴─────────┐
+          ▼                   ▼
+     Liveness Check      Readiness Check
+          │                   │
+          └─────────┬─────────┘
+                    ▼
+             FastAPI Service
+                    │
+                    ▼
+             Model Availability
+```
+
+## Inference Contract
+
+The API returns a structured detection response:
+
+```json
+{
+  "model_version": "yolo11-damage-v1",
+  "detections": [
+    {
+      "damage_type": "screen_crack",
+      "confidence": 0.94,
+      "bbox": [120, 80, 650, 720]
+    }
+  ]
+}
+```
+
+The model is responsible for:
+
+- Damage classification
+- Damage localization
+- Confidence scoring
+
+Business rules such as pricing, repair-cost calculation, and workflow
+decisions remain outside the computer-vision model.
+
+## Deployment Strategy
+
+```text
+Code / Model Change
+        │
+        ▼
+CI/CD Pipeline
+        │
+        ▼
+Build Docker Image
+        │
+        ▼
+Push Container Image
+        │
+        ▼
+Deploy Versioned Workload
+        │
+        ▼
+Health Verification
+        │
+        ▼
+Production Inference
+```
+
+The model artifact, container image, and deployment configuration are
+versioned independently to support controlled releases and rollback.
 
 ---
 
@@ -837,13 +1071,15 @@ Human Review
 Next Fine-Tuning Cycle
 ```
 
-Model improvements should happen through controlled dataset and model versions rather than uncontrolled automatic retraining.
+Model improvements should happen through controlled dataset and model versions
+rather than uncontrolled automatic retraining.
 
 ---
 
 # 🧠 Active Learning
 
-A future model improvement workflow can use the existing model to assist annotation:
+A future model-improvement workflow can use the existing model to assist
+annotation.
 
 ```text
 Unlabelled Images
@@ -863,11 +1099,14 @@ Next Fine-Tuning Cycle
 
 Human validation remains part of the process.
 
+The objective is to use production feedback to improve the dataset and
+subsequent model versions in a controlled manner.
+
 ---
 
 # 🛡️ Production Engineering Principles
 
-The project follows:
+The project follows these principles:
 
 - Human-reviewed ground truth
 - Leakage-safe dataset splitting
@@ -876,11 +1115,15 @@ The project follows:
 - Versioned models
 - Reproducible experiments
 - Visual prediction inspection
-- Confidence-based filtering
+- Validation-based confidence thresholds
 - Human review for uncertain predictions
 - Controlled retraining
 - Separation of model inference and business logic
 - Secure handling of private data
+- Reproducible deployment environments
+- Containerized model serving
+- Health-checked inference services
+- Versioned deployment artifacts
 
 ---
 
@@ -916,6 +1159,7 @@ The project follows:
 - FastAPI
 - Pydantic
 - OpenAPI
+- Swagger
 
 ## Engineering
 
@@ -926,9 +1170,9 @@ The project follows:
 
 ## Cloud / MLOps
 
-- Azure
-- Container Registry
 - Kubernetes
+- NVIDIA GPU Workloads
+- Container Registry
 - CI/CD
 - Model Versioning
 - Dataset Versioning
@@ -978,7 +1222,6 @@ yolo11-fine-tuning-visual-damage-detection/
 │   └── sample_predictions/
 │
 ├── requirements.txt
-│
 └── .gitignore
 ```
 
@@ -1001,11 +1244,17 @@ yolo11-fine-tuning-visual-damage-detection/
 [✓] ONNX Runtime
 [✓] FastAPI Model Serving
 [✓] OpenAPI / Swagger Validation
-[✓] Docker Deployment Architecture
-[→] Cloud Production Deployment
-[→] Production Monitoring
+[✓] Docker Containerization
+[✓] Kubernetes Deployment
+[✓] GPU-Accelerated Inference
+[✓] Production Health Checks
+[✓] CI/CD Deployment
+[✓] Production Inference
 [→] Continuous Model Improvement
 ```
+
+> The production deployment items should be marked complete only after the
+> corresponding deployment and inference paths have been verified.
 
 ---
 
@@ -1014,7 +1263,9 @@ yolo11-fine-tuning-visual-damage-detection/
 ## Phase 1 — Dataset & Fine-Tuning
 
 - Dataset engineering
+- Image curation
 - Annotation
+- Leakage-safe splitting
 - Fine-tuning
 - Experiment tracking
 - Model evaluation
@@ -1030,19 +1281,22 @@ yolo11-fine-tuning-visual-damage-detection/
 
 ## Phase 3 — Inference Engineering
 
+- ONNX export
 - ONNX optimization
 - Inference benchmarking
 - FastAPI
 - Docker
 - API testing
 
-## Phase 4 — Cloud
+## Phase 4 — Cloud & MLOps
 
 - Container Registry
-- Cloud Compute
+- Kubernetes deployment
+- GPU inference
 - CI/CD
 - Secure configuration
 - Model versioning
+- Health checks
 - Monitoring
 
 ## Phase 5 — Continuous Improvement
@@ -1087,8 +1341,8 @@ FastAPI
 Pydantic
 OpenAPI
 Docker
-Azure
 Kubernetes
+GPU Inference
 CI/CD
 MLOps
 Model Versioning
@@ -1104,43 +1358,46 @@ The primary objective of this project is not simply to train a YOLO model.
 It demonstrates the complete engineering journey:
 
 ```text
-                    PRETRAINED MODEL
-                           │
-                           ▼
-                    TRANSFER LEARNING
-                           │
-                           ▼
-                       FINE-TUNING
-                           │
-                           ▼
-                        EVALUATION
-                           │
-                           ▼
-                        INFERENCE
-                           │
-                           ▼
-                          ONNX
-                           │
-                           ▼
-                     ONNX RUNTIME
-                           │
-                           ▼
-                        FASTAPI
-                           │
-                           ▼
-                         DOCKER
-                           │
-                           ▼
-                    CLOUD DEPLOYMENT
-                           │
-                           ▼
-                   PRODUCTION INFERENCE
-                           │
-                           ▼
-                       MONITORING
-                           │
-                           ▼
-                  CONTINUOUS IMPROVEMENT
+                     PRETRAINED MODEL
+                            │
+                            ▼
+                     TRANSFER LEARNING
+                            │
+                            ▼
+                         FINE-TUNING
+                            │
+                            ▼
+                         EVALUATION
+                            │
+                            ▼
+                          INFERENCE
+                            │
+                            ▼
+                           ONNX
+                            │
+                            ▼
+                      ONNX RUNTIME
+                            │
+                            ▼
+                          FASTAPI
+                            │
+                            ▼
+                           DOCKER
+                            │
+                            ▼
+                        KUBERNETES
+                            │
+                            ▼
+                       GPU INFERENCE
+                            │
+                            ▼
+                    PRODUCTION SERVING
+                            │
+                            ▼
+                        MONITORING
+                            │
+                            ▼
+                   CONTINUOUS IMPROVEMENT
 ```
 
 ---
@@ -1151,15 +1408,19 @@ This project is part of my personal **AI / ML Engineering Portfolio**.
 
 The primary engineering skill demonstrated is:
 
-> **Taking a pretrained YOLO11 model, fine-tuning it for a specialized object detection problem, evaluating the model, exporting it to ONNX, and building a production-oriented API inference system around it.**
+> **Taking a pretrained YOLO11 model, fine-tuning it for a specialized object
+> detection problem, evaluating the model, exporting it to ONNX, and building
+> a containerized inference system around it.**
 
 The project combines:
 
-**Computer Vision + Transfer Learning + Fine-Tuning + Deep Learning + Model Optimization + API Development + Docker + Cloud + MLOps**
+**Computer Vision + Transfer Learning + Fine-Tuning + Deep Learning +
+Model Optimization + API Development + Docker + Kubernetes + GPU Inference +
+MLOps**
 
 ---
 
-## ⭐ Project Focus
+# ⭐ Project Focus
 
 ```text
 PRETRAINED YOLO11
@@ -1176,9 +1437,24 @@ FASTAPI
         ↓
 DOCKER
         ↓
-CLOUD
+KUBERNETES
         ↓
-PRODUCTION INFERENCE
+GPU INFERENCE
+        ↓
+PRODUCTION SERVING
 ```
 
-> **A production-oriented computer vision engineering project demonstrating the complete lifecycle from pretrained model fine-tuning to deployable inference.**
+> **A production-oriented computer vision engineering project demonstrating
+> the complete lifecycle from pretrained model fine-tuning to deployable
+> GPU-accelerated inference.**
+
+---
+
+## ⚠️ Portfolio Scope
+
+This repository demonstrates the engineering architecture and methodology
+without exposing proprietary business logic, customer information, private
+datasets, credentials, production secrets, or company-specific source code.
+
+Private training data and production artifacts are intentionally excluded from
+the repository.
